@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { teaching } from "../data/profile";
 ---
 
 <BaseLayout
@@ -11,12 +12,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <h1 id="teaching-title">Teaching</h1>
 
     <p>
-      This page will contain future teaching assistant, grading, and office hour
-      information.
+      This page lists teaching assistant and exercise session information.
     </p>
 
-    <p class="muted">
-      No current teaching information is listed.
-    </p>
+    <section aria-labelledby="ta-title">
+      <h2 id="ta-title">Teaching Assistantships</h2>
+      <ul class="section-list">
+        {
+          teaching.map((item) => (
+            <li>
+              <h3>
+                <a href={item.href}>{item.course}</a>
+              </h3>
+              <p>
+                {item.role}, {item.institution}.
+              </p>
+              <p class="muted">{item.terms}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
   </article>
 </BaseLayout>
